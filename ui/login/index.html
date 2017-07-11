@@ -17,6 +17,7 @@
 
 <body>
   <button id="findpass">Bucket List App</button>
+  <form action="../main_app/pages/index.html">
   <div class="form">
     <div class="forceColor"></div>
     <div class="topbar">
@@ -28,14 +29,25 @@
       <input type="password" class="input" id="password" placeholder="Password" />
     </div>
 
-    <button class="submit" id="submit">Login</button>
+    <button class="submit" name="submit" type="submit" id="submit">Login</button>
+    
     <br>
-    <button class="submit" id="submit">Create Account</button>
+    <button class="submit" id="signupAccount">Create Account</button>
+    
   </div>
-
+</form>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
   <script src="js/index.js"></script>
+
+  <script>
+    $(function(){
+      $('#signupAccount').click(function(){
+        window.location.href = 'signup.html'
+      });
+    });
+
+  </script>
 
 </body>
 
