@@ -55,7 +55,8 @@ body #findpass {
   position: fixed;
   background: rgba(255, 255, 255, 0.5);
   border: none;
-  font-size: 1.2rem;
+  font-size: 3.2rem;
+  font-style: italic;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
