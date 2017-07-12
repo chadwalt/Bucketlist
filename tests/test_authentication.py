@@ -12,16 +12,16 @@ class test_authentication(unittest.TestCase):
         ##app_login = App()
         result = self.app_login.login('', '')
         ##self.assertEqual(True, result, 'Username and password cannot be empty')
-        self.assertTrue(result, "Username and Password cannot be empty")
+        self.assertFalse(result, "Username and Password cannot be empty")
 
     ## Test if the matches for username and password work
     def test_login_match(self):
-        result = self.app_login.login('chad', 'chad123')
+        result = self.app_login.login('chadwalt', 'chadwalt2')
         self.assertTrue(result, "Passwords didn't match")
 
     ## Test to check if the account already exists.
     def test_already_exists_account(self):        
-        result = self.app_login.signup('timothy', 'kyadondo', 'chadwalt', 'chadwalt2323', '')
+        result = self.app_login.signup('timothy', 'kyadondo', 'chadwalt', 'chadwalt2', '')
         self.assertTrue(result, "User already exists")
 
     ## Test for the return type is a list of users.
