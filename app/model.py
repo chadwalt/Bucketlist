@@ -11,6 +11,7 @@ class Users :
 
     ## Delete bucket
     def delete_bucket():
+        pass
 
     ## List buckets.
     def list_items():
@@ -18,6 +19,23 @@ class Users :
 
 
 class Bucket:
+    bucketlist = []
 
+    ##Add buckets.
+    def add_item():
+        pass
+
+    ## Edit bucket
+    def edit_item():
+        pass
+
+    ## Delete bucket
+    def delete_item():
+        pass
+
+    ## List buckets.
+    def list_items():
+        pass             
 
 class BucketItem:        
+    bucketItems = []

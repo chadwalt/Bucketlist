@@ -1,22 +1,19 @@
-from app import App
+import module_import
+from app.model import Users
 import unittest
 
 class BaseTest(unittest.TestCase):
     ## Login set up now.
     def setUp(self):
-        self.app_login = App()
+        self.users = Users()
 
     ## Test empty fields.
-    def test_empty_fields(self):
+    def test_adding_bucket(self):
         ##app_login = App()
-        result = self.app_login.login('', '')
+        result = self.users.add_bucket('', '')
         ##self.assertEqual(True, result, 'Username and password cannot be empty')
-        self.assertTrue(result, "Username and Password cannot be empty")
+        self.assertTrue(result, "Bucket Name cannot be empty")
 
-    def test_login_match(self):
-        result = self.app_login.login('chad', 'chad123')
-        self.assertTrue(result, "Passwords didn't match")
-        
-
+    
 if __name__ == '__main__':
     unittest.main()
