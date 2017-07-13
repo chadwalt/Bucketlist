@@ -1,5 +1,5 @@
 
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, json
 
 from app import app
 from app.application import App
@@ -59,4 +59,16 @@ def create_account():
 @app.route('/dashboard')
 def dashboard(): 
     bucketlist = users_meth.list_items();
-    return render_template("main_app/index.html", buckets = bucketlist) 
+    return render_template("main_app/index.html", buckets = bucketlist)
+
+
+@app.route('/save_bucket', methods = ['POST', 'GET'])
+def save_bucket(): 
+    if request.method == 'POST':
+        data = request.form
+        bucket = data['bucket']
+        time = data['time']
+
+    result = users_meth.add_bucket(bucket,time);
+
+    return json.dumps(result)        
