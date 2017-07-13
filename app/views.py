@@ -94,12 +94,19 @@ def bucket_items(id):
 def save_item(): 
     if request.method == 'POST':
         data = request.form
-        name = data['item_name']
-        description = data['item_desc']
+        name = data['name']
+        description = data['desc']
         time = data['time']
         bucket_id = data['bucket_id']
+        #bucket_id = id
 
 
-        #result = bucket_meth.add_item(name, description,time, bucket_id);
+        result = bucket_meth.add_item(name, description,time, bucket_id);
+        #return 'yuyyt'
 
     return json.dumps(result) 
+
+@app.route('/logout')
+def log_out():    
+    session.clear()
+    return redirect(url_for('/')) 
