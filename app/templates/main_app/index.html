@@ -145,7 +145,7 @@
                                                                 <td>{{bucket['id']}}</td>
                                                                 <td><a href="javascript:undefined" onclick="open_items({{bucket['id']}})" title="Click to show items">{{bucket['name']}}</a></td>
                                                                 <td><button type="button" onclick="edit_bucket({{bucket['id']}}, '{{bucket["name"]}}')" class="btn btn-primary">Edit</button></td>
-                                                                <td><button type="button" onclick="delete_bucket({{bucket['id']}})" class="btn btn-danger">Delete</button></td>
+                                                                <td><button type="button" onclick="delete_bucket({{bucket['id']}}, '{{bucket["name"]}}')" class="btn btn-danger">Delete</button></td>
                                                             </tr>
                                                         {%endfor%}
                                                         
@@ -268,8 +268,19 @@
         }
 
         // Delete the bucket 
-        function delete_bucket(id){
-
+        function delete_bucket(id, title){
+            bootbox.confirm("Are you sure you want to delete <b>" + title + "?</b>", function(result){ 
+                //console.log('This was logged in the callback: ' + result); 
+                if (result){
+                    $.post('/delete_bucket', {id: id}, function(response){
+                        if (response.success){
+                            window.location.reload();
+                        } else {
+                            bootbox.alert("Something happend please try again...!");
+                        }
+                    }, 'JSON');
+                }
+            });
         }
     </script>
 

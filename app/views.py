@@ -124,11 +124,8 @@ def save_item():
         description = data['desc']
         time = data['time']
         bucket_id = data['bucket_id']
-        #bucket_id = id
-
 
         result = bucket_meth.add_item(name, description,time, bucket_id);
-        #return 'yuyyt'
 
     return json.dumps(result) 
 

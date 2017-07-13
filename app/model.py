@@ -31,8 +31,14 @@ class Users :
         return {'success' : True}
 
     ## Delete bucket
-    def delete_bucket():
-        pass
+    def delete_bucket(self, bucket_id):
+        bucket_id = int(bucket_id)
+        if id:
+            for bucket in self.buckets:
+                if bucket['id'] == bucket_id:
+                    self.buckets.remove(bucket)
+
+        return {'success' : True}
 
     ## List buckets.
     def list_items(self):
@@ -48,14 +54,12 @@ class Users :
 class Bucket:
     bucketlist_items = []
 
-    ##Add buckets.
+    ##Add buckets items.
     def add_item(self, name, description, time, bucket_id):
         ## Check if the name and time have been provided.
         if name:
             ## Create a dictionary to hold the new item.
-            id = 1
-            if len(self.bucketlist_items):
-                id = len(self.bucketlist_items)
+            id = len(self.bucketlist_items) + 1
 
             dict = {'id': id, 'name': name, 'description': description, 'time': time, 'bucket_id': bucket_id}
             self.bucketlist_items.append(dict)
@@ -63,24 +67,32 @@ class Bucket:
 
         return {'success' : False}
 
-    ## Edit bucket
-    def edit_item(self, id, name):
+    ## Edit bucket item
+    def edit_item(self, bucket_id, name):
         ## The id cannnot be empty
+        bucket_id = int(bucket_id)
         if id and name:
             for item in self.bucketlist_items:
                 if item['id'] == id:
                     item['name'] = name
                     return True
                     
-        return False
+            return {'success' : True}
 
-    ## Delete bucket
-    def delete_item(self):
-        pass
+    ## Delete bucket item
+    def delete_item(self, bucket_id):
+        bucket_id = int(bucket_id)
+        if id:
+            for item in self.bucketlist_items:
+                if item['id'] == bucket_id:
+                    self.bucketlist_items.remove(item)
+
+            return {'success' : True}
 
     ## List buckets.
     def bucket_items(self, bucket_id):
         items = [] # A list to hold the bucket items
+        bucket_id = int(bucket_id)
         for bucket_item in self.bucketlist_items:
             if bucket_item['bucket_id'] == bucket_id:
                 items.append(bucket_item)

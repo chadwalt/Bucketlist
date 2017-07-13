@@ -255,12 +255,12 @@
                         
                         $.post('/save_item', {name: item_name, desc: item_desc, time: time, bucket_id: bucket_id}, function(response){
                          // $.post('/save_item', {bucket:item_name, time: time}, function(response){
-                                if (response.success){
-                                    window.location.reload();
-                                } else {
-                                    bootbox.alert("Something happend please try again...!");
-                                }
-                            }, 'JSON');
+                            if (response.success){
+                                window.location.reload();
+                            } else {
+                                bootbox.alert("Something happend please try again...!");
+                            }
+                        }, 'JSON');
                     }
                 },
                 {
