@@ -19,7 +19,8 @@ def login():
         result = login_meth.login(data['username'], data['password'])
 
         if result:
-            return 'User exists'
+            ## Move to the dashboard
+            return redirect(url_for('dashboard'))
         else:
             ##return 'User dont exist'
             ## Redirec the user to the signp interface
@@ -37,15 +38,22 @@ def create_account():
         data = request.form
 
         #login_meth = App()
+        #return data['first_name'] + '' + data['sur_name'] + '' + data['username'] + '' +  data['password'] + '' +  data['email']
+
         result = login_meth.signup(data['first_name'],data['sur_name'],data['username'], data['password'], data['email'])
 
-        print(login_meth.users)
-        print("This is printig to the file.")
-        return 'These are the users.'
+        # print(login_meth.users)
+        # print("This is printig to the file.")
+        # return 'These are the users.'
 
-        if result:
-            return 'User exists'
+        #return result
+
+        if result == 'user exists' or result == 'empty fields':
+            return redirect(url_for('signup'))
         else:
             ## Redirec the user to the signp interface
             return redirect(url_for('index'))    
 
+@app.route('/dashboard')
+def dashboard():
+    return render_template("main_app/index.html")

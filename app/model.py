@@ -39,7 +39,7 @@ class Bucket:
     ## Edit bucket
     def edit_item(self, id, name):
         ## The id cannnot be empty
-        if id :
+        if id and name:
             for item in self.bucketlist_items:
                 if item['id'] == id:
                     item['name'] = name
