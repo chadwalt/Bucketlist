@@ -50,5 +50,7 @@ Make sure you have the lastest python installed. https://www.python.org/download
 
 ```$ flask run```
 
+Then you are goood to go.
+
 
 
