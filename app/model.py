@@ -42,19 +42,19 @@ class Bucket:
     bucketlist_items = []
 
     ##Add buckets.
-    def add_item(self, name, time):
+    def add_item(self, name, description, time, bucket_id):
         ## Check if the name and time have been provided.
-        if name and time:
+        if name:
             ## Create a dictionary to hold the new item.
             id = 1
             if len(self.bucketlist_items):
                 id = len(self.bucketlist_items)
 
-            dict = {'id': id, 'name': name, 'time': time}
+            dict = {'id': id, 'name': name, 'description': description, 'time': time, 'bucket_id': bucket_id}
             self.bucketlist_items.append(dict)
-            return True
+            return {'success' : True}
 
-        return False
+        return {'success' : False}
 
     ## Edit bucket
     def edit_item(self, id, name):

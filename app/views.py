@@ -89,3 +89,17 @@ def bucket_items(id):
         result = bucket_meth.bucket_items(id)
 
         return render_template("main_app/bucketListItems.html", items = result)    
+
+@app.route('/save_item', methods = ['POST', 'GET'])
+def save_item(): 
+    if request.method == 'POST':
+        data = request.form
+        name = data['item_name']
+        description = data['item_desc']
+        time = data['time']
+        bucket_id = data['bucket_id']
+
+
+        #result = bucket_meth.add_item(name, description,time, bucket_id);
+
+    return json.dumps(result) 
