@@ -2,8 +2,19 @@ class Users :
     buckets = []
 
     ##Add buckets.
-    def add_bucket():
-        pass
+    def add_item(self, name, time):
+        ## Check if the name and time have been provided.
+        if name and time:
+            ## Create a dictionary to hold the new item.
+            id = 1
+            if len(self.buckets):
+                id = len(self.buckets)
+
+            dict = {'id': id, 'name': name, 'time': time}
+            self.buckets.append(dict)
+            return True
+
+        return False
 
     ## Edit bucket
     def edit_bucket():
@@ -14,8 +25,8 @@ class Users :
         pass
 
     ## List buckets.
-    def list_items():
-        pass                
+    def list_items(self):
+        return self.buckets   
 
 
 class Bucket:

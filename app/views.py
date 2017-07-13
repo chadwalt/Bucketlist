@@ -3,9 +3,11 @@ from flask import render_template, request, redirect, url_for
 
 from app import app
 from app.application import App
+from app.model import Users
 
 #initializing the app class
 login_meth = App()
+users_meth = Users()
 
 @app.route('/')
 def index():
@@ -55,5 +57,6 @@ def create_account():
             return redirect(url_for('index'))    
 
 @app.route('/dashboard')
-def dashboard():
-    return render_template("main_app/index.html")
+def dashboard(): 
+    bucketlist = users_meth.list_items();
+    return render_template("main_app/index.html", buckets = bucketlist) 
