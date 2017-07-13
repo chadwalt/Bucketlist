@@ -19,7 +19,7 @@
   
   <div class="form">
     <form action="/login" method="POST"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           git >
-    <div class="forceColor"></div>
+    <div class="forceColor"></div>    
     <div class="topbar">
       <div class="spanColor"></div>
       <input type="text" class="input" name="username" id="username" placeholder="Username" />
@@ -45,6 +45,11 @@
       $('#signupAccount').click(function(){
         window.location.href = '/signup'
       });
+
+      var login_error = '{{session['error']}}'
+      if (login_error){
+        alert(login_error)
+      }
     });
 
   </script>

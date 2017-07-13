@@ -21,14 +21,16 @@ def login():
         
         result = login_meth.login(data['username'], data['password'])
 
-        if result:
-            
+        if result:            
             ## Move to the dashboard
             return redirect(url_for('dashboard'))
         else:
             ##return 'User dont exist'
             ## Redirec the user to the signp interface
-            return redirect(url_for('signup'))
+            #return '<script>alert("Invaild Username/Password")</script>'
+            #message = 'Invalid Username/Password'
+            session['error'] = 'Invalid Username/Password'
+            return redirect(url_for('index'))
     #return render_template("login/index.html")
 
 @app.route('/signup')
@@ -53,8 +55,10 @@ def create_account():
         #return result
 
         if result == 'user exists' or result == 'empty fields':
+            session['error'] = 'User already exists'
             return redirect(url_for('signup'))
         else:
+            session.pop('error', None)
             ## Redirec the user to the signp interface
             return redirect(url_for('index'))    
 
@@ -107,6 +111,6 @@ def save_item():
     return json.dumps(result) 
 
 @app.route('/logout')
-def log_out():    
+def logout():    
     session.clear()
-    return redirect(url_for('/')) 
+    return redirect(url_for('index')) 

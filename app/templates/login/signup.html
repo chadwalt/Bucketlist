@@ -57,6 +57,11 @@
       $('#loginBtn').click(function(){
         window.location.href = '/'
       });
+
+      var login_error = '{{session['error']}}'
+      if (login_error){
+          alert(login_error)
+      }
     });
 
   </script>

@@ -8,9 +8,9 @@ class Users :
         ## Check if the name and time have been provided.
         if name and time:
             ## Create a dictionary to hold the new item.
-            id = 1
-            if len(self.buckets):
-                id = len(self.buckets)
+            #id = 1
+            #if len(self.buckets):
+            id = len(self.buckets) + 1
 
             user_id = session['user_id']
             dict = {'id': id, 'name': name, 'time': time, 'user_id': user_id}
