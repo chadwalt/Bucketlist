@@ -14,29 +14,30 @@
 </head>
 
 <body>
-  <button id="findpass">Bucket List App</button>
-  <form action="index.html">
+  <button id="findpass">Bucket List </button>
+  
   <div class="form signupForm">
+    <form action="/create_account" method="POST">
     <div class="forceColor"></div>
     <div class="topbar">
       <div class="spanColor"></div>
-      <input type="text" class="input" id="first_name" placeholder="First Name" />
+      <input type="text" class="input" name="first_name" id="first_name" placeholder="First Name" />
     </div>
     <div class="topbar">
       <div class="spanColor"></div>
-      <input type="text" class="input" id="password" placeholder="Sur Name" />
+      <input type="text" class="input" id="sur_name" name="sur_name" placeholder="Sur Name" />
     </div>
     <div class="topbar">
       <div class="spanColor"></div>
-      <input type="text" class="input" id="username" placeholder="Username" />
+      <input type="text" class="input"name="username" id="username" placeholder="Username" />
     </div>
     <div class="topbar">
       <div class="spanColor"></div>
-      <input type="password" class="input" id="password" placeholder="Password" />
+      <input type="password" class="input" name="password" id="password" placeholder="Password" />
     </div>
     <div class="topbar">
       <div class="spanColor"></div>
-      <input type="email" class="input" id="email" placeholder="Email" />
+      <input type="email" class="input" name="email" id="email" placeholder="Email" />
     </div>
 
     <button class="submit" id="submit">Create Account</button>
@@ -54,7 +55,7 @@
   <script>
     $(function(){
       $('#loginBtn').click(function(){
-        window.location.href = 'index.html'
+        window.location.href = '/index'
       });
     });
 

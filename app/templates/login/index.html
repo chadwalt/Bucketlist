@@ -15,21 +15,22 @@
 </head>
 
 <body>
-  <button id="findpass">Bucket List App</button>
-  <form action="../main_app/pages/index.html">
+  <button id="findpass">Bucket List</button>
+  
   <div class="form">
+    <form action="/login" method="POST"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           git >
     <div class="forceColor"></div>
     <div class="topbar">
       <div class="spanColor"></div>
-      <input type="text" class="input" id="username" placeholder="Username/Email" />
+      <input type="text" class="input" name="username" id="username" placeholder="Username" />
     </div>
     <div class="topbar">
       <div class="spanColor"></div>
-      <input type="password" class="input" id="password" placeholder="Password" />
+      <input type="password" class="input" id="password" placeholder="Password" name="password"/>
     </div>
 
     <button class="submit" name="submit" type="submit" id="submit">Login</button>
-    
+    </form>
     <br>
     <button class="submit" id="signupAccount">Create Account</button>
     
@@ -42,7 +43,7 @@
   <script>
     $(function(){
       $('#signupAccount').click(function(){
-        window.location.href = 'signup.html'
+        window.location.href = '/signup'
       });
     });
 
