@@ -20,8 +20,15 @@ class Users :
         return {'success' : False}
 
     ## Edit bucket
-    def edit_bucket(self, id, name):
-        pass
+    def edit_bucket(self, bucket_id, name, time):
+        bucket_id = int(bucket_id)
+        if name:
+            for bucket in self.buckets:
+                if bucket['id'] == bucket_id:
+                    bucket['name'] = name
+                    bucket['time'] = time
+
+        return {'success' : True}
 
     ## Delete bucket
     def delete_bucket():

@@ -144,7 +144,7 @@
                                                             <tr>
                                                                 <td>{{bucket['id']}}</td>
                                                                 <td><a href="javascript:undefined" onclick="open_items({{bucket['id']}})" title="Click to show items">{{bucket['name']}}</a></td>
-                                                                <td><button type="button" onclick="edit_bucket({{bucket['id']}})" class="btn btn-primary">Edit</button></td>
+                                                                <td><button type="button" onclick="edit_bucket({{bucket['id']}}, '{{bucket["name"]}}')" class="btn btn-primary">Edit</button></td>
                                                                 <td><button type="button" onclick="delete_bucket({{bucket['id']}})" class="btn btn-danger">Delete</button></td>
                                                             </tr>
                                                         {%endfor%}
@@ -223,7 +223,52 @@
             window.location.href = '/bucket_items/' + id
         }
 
-        function edit_bucket(id){
+        function edit_bucket(id, title){       
+            //console.log(title);
+            var str = '<form id="itemForm" method="post" class="form-horizontal">';
+                str += '<div class="form-group">';
+                str += '<label class="col-xs-3 control-label">Title</label>';
+                str += '<div class="col-xs-5">';
+                str += '<input type="text" class="form-control" value="' + title +'" id="title" name="title" />';
+                str += '</div>';
+                str += '</div>';                              
+                str += '</form>';
+
+            bootbox.dialog({
+                title: "Edit",
+                message: str,
+                buttons: [
+                {
+                    label: "Save",
+                    className: "btn btn-primary pull-left",
+                    callback: function() {                        
+                        var title = $('#title').val();
+                        var time = new Date();
+                        console.log(title);
+                        //return;                                                
+                        $.post('/edit_bucket', {name: title, id: id, time:time}, function(response){
+                         // $.post('/save_item', {bucket:item_name, time: time}, function(response){
+                                if (response.success){
+                                    window.location.reload();
+                                } else {
+                                    bootbox.alert("Something happend please try again...!");
+                                }
+                            }, 'JSON');
+                    }
+                },
+                {
+                    label: "Close",
+                    className: "btn btn-default pull-left",
+                    callback: function() {
+                    console.log("just do something on close");
+                    }
+                }
+                ],
+            });
+        }
+
+        // Delete the bucket 
+        function delete_bucket(id){
 
         }
     </script>
