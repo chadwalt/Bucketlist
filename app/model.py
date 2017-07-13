@@ -1,3 +1,5 @@
+from flask import session
+
 class Users :
     buckets = []
 
@@ -10,7 +12,8 @@ class Users :
             if len(self.buckets):
                 id = len(self.buckets)
 
-            dict = {'id': id, 'name': name, 'time': time}
+            user_id = session['user_id']
+            dict = {'id': id, 'name': name, 'time': time, 'user_id': user_id}
             self.buckets.append(dict)
             return {'success' : True}
 
@@ -26,7 +29,13 @@ class Users :
 
     ## List buckets.
     def list_items(self):
-        return self.buckets   
+        user_id = session['user_id']
+        bucket_listings = []
+        for bucket in self.buckets:
+            if bucket['user_id'] == user_id:
+                bucket_listings.append(bucket)
+                
+        return bucket_listings   
 
 
 class Bucket:
@@ -63,8 +72,13 @@ class Bucket:
         pass
 
     ## List buckets.
-    def list_items(self):
-        pass             
+    def bucket_items(self, bucket_id):
+        items = [] # A list to hold the bucket items
+        for bucket_item in self.bucketlist_items:
+            if bucket_item['bucket_id'] == bucket_id:
+                items.append(bucket_item)
+
+        return items
 
 class BucketItem:        
     bucketItems = []
