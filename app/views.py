@@ -110,9 +110,10 @@ def bucket_items(id):
     if request.method == 'GET':
         ## Someone has to be logined to view the dashboard
         if 'user_id' not in session:
-            return redirect(url_for('signup'))
+            return redirect(url_for('signup'))        
 
         result = bucket_meth.bucket_items(id)
+        #return str(result)
 
         return render_template("main_app/bucketListItems.html", items = result)    
 
@@ -127,7 +128,33 @@ def save_item():
 
         result = bucket_meth.add_item(name, description,time, bucket_id);
 
+        #return str(result)
+
     return json.dumps(result) 
+
+@app.route('/edit_item', methods = ['POST', 'GET'])
+def edit_item(): 
+    if request.method == 'POST':
+        data = request.form
+        name = data['name']
+        description = data['desc']
+        time = data['time']
+        bucket_id = data['bucket_id']
+        item_id = data['item_id']
+
+        result = bucket_meth.edit_item(item_id, name, description,time, bucket_id);
+
+    return json.dumps(result)        
+
+@app.route('/delete_bucket', methods = ['POST', 'GET'])
+def delete_item(): 
+    if request.method == 'POST':
+        data = request.form
+        item_id = data['id']
+
+    result = users_meth.delete_item(item_id);
+
+    return json.dumps(result)  
 
 @app.route('/logout')
 def logout():    

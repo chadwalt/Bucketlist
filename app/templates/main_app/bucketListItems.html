@@ -167,10 +167,10 @@
                                                         {%for item in items%}
                                                             <tr>
                                                                 <td>{{item['id']}}</td>
-                                                                <td><a href="javascript:undefined" onclick="open_items({{item['id']}})" title="Click to show items">{{item['name']}}</a></td>
-                                                                <td><a href="javascript:undefined"  title="Click to show items">{{item['description']}}</a></td>
-                                                                <td><button type="button" class="btn btn-primary">Edit</button></td>
-                                                                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                                                <td>{{item['name']}}</td>
+                                                                <td>{{item['description']}}</td>
+                                                                <td><button type="button" onclick="edit_item({{item['id']}}, '{{item["name"]}}','{{item["description"]}}')" class="btn btn-primary">Edit</button></td>
+                                                                <td><button type="button" onclick="delete_item({{item['id']}}, '{{item["name"]}}')" class="btn btn-danger">Delete</button></td>
                                                             </tr>
                                                         {%endfor%}
                                                         
@@ -220,9 +220,7 @@
     <script src="../../static/main_app/dist/js/sb-admin-2.js"></script>
 
     <script>
-        $(function(){
-            $('#add_item').click(function(){
-                var str = '<form id="itemForm" method="post" class="form-horizontal">';
+         var str = '<form id="itemForm" method="post" class="form-horizontal">';
                 str += '<div class="form-group">';
                 str += '<label class="col-xs-3 control-label">Item</label>';
                 str += '<div class="col-xs-5">';
@@ -237,7 +235,9 @@
                 str += '</div>';
                 
                 str += '</form>';
-                
+        $(function(){
+            
+            $('#add_item').click(function(){                                
                 bootbox.dialog({
                 title: "Add item to the list!",
                 message: str,
@@ -275,9 +275,67 @@
                 
             });            
         });
+        
+
 
         function open_items(id){
             window.location.href = '/bucket_items/' + id
+        }
+
+        function edit_item(id, title, description){               
+            bootbox.dialog({
+                title: "Edit",
+                message: str,
+                buttons: [
+                {
+                    label: "Save",
+                    className: "btn btn-primary pull-left",
+                    callback: function() {                        
+                        var item_name = $('#item_name').val();
+                        var time = new Date()
+                        var item_desc = $('#item_desc').val();
+                        var url = window.location.pathname.split('/')
+                        var bucket_id = Number(url[url.length - 1])
+                        var url_path = window.location.pathname;
+                                                          
+                        $.post('/edit_item', {item_id: id,name: item_name, desc: item_desc, time: time, bucket_id: bucket_id}, function(response){
+                         // $.post('/save_item', {bucket:item_name, time: time}, function(response){
+                            if (response.success){
+                                window.location.reload();
+                            } else {
+                                bootbox.alert("Something happend please try again...!");
+                            }
+                        }, 'JSON');
+                    }
+                },
+                {
+                    label: "Close",
+                    className: "btn btn-default pull-left",
+                    callback: function() {
+                    console.log("just do something on close");
+                    }
+                }
+                ],
+            });
+
+            $('#item_name').val(title);
+            $('#item_desc').val(description);
+        }
+
+        // Delete the bucket 
+        function delete_item(id, title){
+            bootbox.confirm("Are you sure you want to delete <b>" + title + "?</b>", function(result){ 
+                //console.log('This was logged in the callback: ' + result); 
+                if (result){
+                    $.post('/delete_item', {id: id}, function(response){
+                        if (response.success){
+                            window.location.reload();
+                        } else {
+                            bootbox.alert("Something happend please try again...!");
+                        }
+                    }, 'JSON');
+                }
+            });
         }
     </script>
 
