@@ -146,13 +146,13 @@ def edit_item():
 
     return json.dumps(result)        
 
-@app.route('/delete_bucket', methods = ['POST', 'GET'])
+@app.route('/delete_item', methods = ['POST', 'GET'])
 def delete_item(): 
     if request.method == 'POST':
         data = request.form
         item_id = data['id']
 
-    result = users_meth.delete_item(item_id);
+    result = bucket_meth.delete_item(item_id);
 
     return json.dumps(result)  
 
