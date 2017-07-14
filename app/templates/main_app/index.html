@@ -91,7 +91,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="profile.html"><i class="fa fa-user"></i> Profile</a>
+                                    <a href="#"><i class="fa fa-user"></i> Profile</a>
                                 </li>
                                 <li>
                                     <a href="/logout"><i class="fa fa-lock"></i> Logout</a>
@@ -197,6 +197,7 @@
 
     <script>
         $(function(){
+            // Add buckets
             $('#add_bucket').click(function(){
                 bootbox.prompt({
                     title: "Add Bucket!",
@@ -219,10 +220,12 @@
             });
         });
 
+        // Open the items in that bucket
         function open_items(id){
             window.location.href = '/bucket_items/' + id
         }
 
+        // Edit the bucket
         function edit_bucket(id, title){       
             //console.log(title);
             var str = '<form id="itemForm" method="post" class="form-horizontal">';
@@ -255,15 +258,7 @@
                                 }
                             }, 'JSON');
                     }
-                },
-                {
-                    label: "Close",
-                    className: "btn btn-default pull-left",
-                    callback: function() {
-                    console.log("just do something on close");
-                    }
-                }
-                ],
+                }],
             });
         }
 

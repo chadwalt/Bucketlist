@@ -28,7 +28,9 @@ class Users :
                     bucket['name'] = name
                     bucket['time'] = time
 
-        return {'success' : True}
+            return {'success' : True}
+
+        return {'success' : False}
 
     ## Delete bucket
     def delete_bucket(self, bucket_id):
@@ -38,7 +40,8 @@ class Users :
                 if bucket['id'] == bucket_id:
                     self.buckets.remove(bucket)
 
-        return {'success' : True}
+            return {'success' : True}
+        return {'success' : False}
 
     ## List buckets.
     def list_items(self):
