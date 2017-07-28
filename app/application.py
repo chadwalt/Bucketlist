@@ -23,9 +23,9 @@ class App:
                     return 'user exists'
                     #return 'user exits'
                     
-            id = 1
-            if len(self.users):
-                id = len(self.users)
+            ##id = 1
+            ##if len(self.users):
+            id = len(self.users) + 1; ## Getting the user id.
 
             dict = {'id': id, 'first_name': first_name, 'sur_name': sur_name, 'username': username,
                 'password': password, 'email': email}
