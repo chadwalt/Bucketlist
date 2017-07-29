@@ -112,4 +112,4 @@ class Bucket:
         #return self.bucketlist_items
 
 class BucketItem:        
-    bucketItems = []
+    bucketItems = [] ## Using this as bucketitems
