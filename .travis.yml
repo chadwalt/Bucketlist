@@ -11,4 +11,5 @@ install:
   - pip install coverage
   - pip install flask
 # command to run tests
-script: nosetests
+script:
+  - nosetests --with-coverage --cover-package=app
