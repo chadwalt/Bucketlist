@@ -1,5 +1,7 @@
 ## Bucketlist 
 
+[![Build Status](https://travis-ci.org/chadwalt/Bucketlist.svg?branch=master)](https://travis-ci.org/chadwalt/Bucketlist)
+
 The Bucket List App, is your number one solution to get your experiences or achievements that u hope to have or accomplish during their lifetime.
 
 __**Installation**__
