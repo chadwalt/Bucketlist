@@ -1,7 +1,6 @@
 ## Bucketlist 
 
 [![Build Status](https://travis-ci.org/chadwalt/Bucketlist.svg?branch=master)](https://travis-ci.org/chadwalt/Bucketlist)
-
 [![Coverage Status](https://coveralls.io/repos/github/chadwalt/Bucketlist/badge.svg?branch=master)](https://coveralls.io/github/chadwalt/Bucketlist?branch=master)
 
 The Bucket List App, is your number one solution to get your experiences or achievements that u hope to have or accomplish during their lifetime.
